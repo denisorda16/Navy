@@ -31,6 +31,7 @@ namespace NavBatProject
             Board board = new Board();
             board.CheckHit(2, 2);
             Console.WriteLine(board.ConsolePrint());
+            //Ура мы разобрались с Гитом
         }
     }
 }
