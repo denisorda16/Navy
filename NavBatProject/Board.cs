@@ -34,7 +34,7 @@ namespace NavBatProject
             {
                 if (cell.X == x && cell.Y == y)
                 {
-                    if (cell.Type == Cell.eType.HITTED)
+                    if (cell.Type == eCell.eType.HITTED)
                     {
                         break;
                     }
@@ -85,10 +85,10 @@ namespace NavBatProject
                     eCell cell = cells[10 * i + j];
                     switch(cell.Type)
                     {
-                        case eCell.Type.ALIVE: line += "B" + vertDiv;break;
-                        case eCell.Type.EMPTY: line += "?" + vertDiv;break;
-                        case eCell.Type.HITTED: line += "$" + vertDiv;break;
-                        case eCell.Type.MISSED: line += "#" + vertDiv;break;
+                        case eCell.eType.ALIVE: line += "B" + vertDiv;break;
+                        case eCell.eType.EMPTY: line += "?" + vertDiv;break;
+                        case eCell.eType.HITTED: line += "$" + vertDiv;break;
+                        case eCell.eType.MISSED: line += "#" + vertDiv;break;
                     }
                 }
                     result += "\n"+ line + "\n" + horDiv;            

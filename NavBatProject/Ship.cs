@@ -62,7 +62,7 @@ namespace NavBatProject
         }
         public bool CheckHit(int x, int y)
         {
-            foreach (Cell cell in cells)
+            foreach (eCell cell in cells)
             {
                 if (cell.X == x && cell.Y == y)
                 {

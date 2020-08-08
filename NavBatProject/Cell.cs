@@ -45,8 +45,8 @@ namespace NavBatProject
         {
             return String.Format("(x={0}, y={1},type={2})",X,Y,type); //dump
         }
-        private Ship ship = null;
-        public void SetShip(Ship _ship)
+        private eShip ship = null;
+        public void SetShip(eShip _ship)
         {
             ship = _ship;
             type = eType.ALIVE;
