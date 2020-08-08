@@ -14,6 +14,10 @@ namespace NavBatProject
                 cell.SetShip(this);
             }
         }
+    
+
+        public List<eCell> Cells() { return cells; }
+
         protected List<eCell> cells = null;
         public bool IsAlive()
         {

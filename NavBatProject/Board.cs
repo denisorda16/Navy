@@ -61,9 +61,75 @@ namespace NavBatProject
         }
         protected List<eCell> cells = null;
         protected List<eShip> ships = null;
+
+        public List<eCell> Cells() { return cells; }
         public bool AddShip (eShip ship)
         {
-            return false;
+            return NeedAddShip(ship)
+                && HasSpace(ship)
+                && AddShip_(ship);
+        }
+        protected bool AddShip_(eShip ship)
+        {
+            List<eCell> copyShipCells = new List<eCell>();
+            foreach (eCell cell in ship.Cells())
+            {
+                eCell copyItem = cells.Find(delegate (eCell item)
+                {
+                    return item.X == cell.X && item.Y == cell.Y;
+                });
+                if(copyItem == null)
+                {
+                    return false;
+                }
+                copyShipCells.Add(copyItem);
+            }
+            ships.Add(new eShip(copyShipCells));
+            return true;
+        }
+        protected bool HasSpace(eShip ship)
+        {
+            foreach (eCell cell in ship.Cells())
+            {
+                if (!IsCellsAroundEmpty(cell))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+    protected bool NeedAddShip(eShip ship)
+        {
+            int shipSize = ship.Cells().Count;
+            if(shipSize <= 0 || shipSize > 4)
+            {
+                return false;
+            }
+            List<eShip> res = ships.FindAll(delegate (eShip item)
+            {
+                return item.Cells().Count == shipSize;
+            });
+
+            switch (shipSize)
+            {
+                case 1: return res.Count < 1;
+                case 2: return res.Count < 2;
+                case 3: return res.Count < 3;
+                case 4: return res.Count < 4;
+                default:
+                return false;
+            }
+        }
+
+        protected bool IsCellsAroundEmpty(eCell cell)
+        {
+            List<eCell> cellsAround = cells.FindAll(delegate (eCell item)
+            {
+                return item.Type != eCell.eType.EMPTY
+                    && (Math.Abs(item.X - cell.X) == 1 || Math.Abs(item.Y - cell.Y)==1);
+            });
+
+            return cellsAround.Count == 0;
         }
         public override string ToString()
         {
