@@ -4,22 +4,22 @@ using System.Text;
 
 namespace NavBatProject
 {
-    class Board
+    class eBoard
     {
-        public Board()
+        public eBoard()
         {
-            cells = new List<Cell>();
-            ships = new List<Ship>();
+            cells = new List<eCell>();
+            ships = new List<eShip>();
             for (int i = 0; i<10;++i)
                 for (int j = 0; j<10;++j)
                 {
-                    cells.Add(new Cell(i, j));
+                    cells.Add(new eCell(i, j));
                 }
         }
         public bool AreAllShipsKilled()
         {
             int currentKilledShips = 0;
-            foreach(Ship ship in ships)
+            foreach(eShip ship in ships)
             {
                 if (!ship.IsAlive())
                 {
@@ -30,11 +30,11 @@ namespace NavBatProject
         }
         public bool CheckHit(int x, int y)
         {
-            foreach (Cell cell in cells)
+            foreach (eCell cell in cells)
             {
                 if (cell.X == x && cell.Y == y)
                 {
-                    if (cell._Type == Cell.Type.HITTED)
+                    if (cell.Type == Cell.eType.HITTED)
                     {
                         break;
                     }
@@ -45,7 +45,7 @@ namespace NavBatProject
                     }
                 }
             }
-            foreach (Ship ship in ships)
+            foreach (eShip ship in ships)
             {
 
                 if (ship.CheckHit(x, y))
@@ -59,9 +59,9 @@ namespace NavBatProject
         {
             return true;
         }
-        protected List<Cell> cells = null;
-        protected List<Ship> ships = null;
-        public bool AddShip (Ship ship)
+        protected List<eCell> cells = null;
+        protected List<eShip> ships = null;
+        public bool AddShip (eShip ship)
         {
             return false;
         }
@@ -82,13 +82,13 @@ namespace NavBatProject
                 string line = (i).ToString() + vertDiv;
                 for (int j = 0; j < 10; ++j)
                 {
-                    Cell cell = cells[10 * i + j];
-                    switch(cell._Type)
+                    eCell cell = cells[10 * i + j];
+                    switch(cell.Type)
                     {
-                        case Cell.Type.ALIVE: line += "B" + vertDiv;break;
-                        case Cell.Type.EMPTY: line += "?" + vertDiv;break;
-                        case Cell.Type.HITTED: line += "$" + vertDiv;break;
-                        case Cell.Type.MISSED: line += "#" + vertDiv;break;
+                        case eCell.Type.ALIVE: line += "B" + vertDiv;break;
+                        case eCell.Type.EMPTY: line += "?" + vertDiv;break;
+                        case eCell.Type.HITTED: line += "$" + vertDiv;break;
+                        case eCell.Type.MISSED: line += "#" + vertDiv;break;
                     }
                 }
                     result += "\n"+ line + "\n" + horDiv;            

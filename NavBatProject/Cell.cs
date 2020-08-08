@@ -4,9 +4,9 @@ using System.Text;
 
 namespace NavBatProject
 {
-    class Cell
+    class eCell
     {
-        public Cell(int x, int y)
+        public eCell(int x, int y)
         {
             X = x;
             Y = y;
@@ -20,15 +20,15 @@ namespace NavBatProject
             get;
         }
         //перечесление
-        public enum Type
+        public enum eType
         {
             EMPTY,
             ALIVE,
             MISSED,
             HITTED,
         }
-        private Type type = Type.EMPTY;
-        public Type _Type
+        private eType type = eType.EMPTY;
+        public eType Type
         {
             get { return type; }
         }
@@ -36,9 +36,9 @@ namespace NavBatProject
         {
             switch(type)
             {
-                case Type.EMPTY: type = Type.MISSED; break;
-                case Type.ALIVE: type = Type.HITTED; break;
-                case Type.HITTED: type = Type.MISSED; break;
+                case eType.EMPTY: type = eType.MISSED; break;
+                case eType.ALIVE: type = eType.HITTED; break;
+                case eType.HITTED: type = eType.MISSED; break;
             }
         }
         public override string ToString()
@@ -49,7 +49,7 @@ namespace NavBatProject
         public void SetShip(Ship _ship)
         {
             ship = _ship;
-            type = Type.ALIVE;
+            type = eType.ALIVE;
         }
     }
 }

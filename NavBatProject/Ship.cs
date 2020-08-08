@@ -4,25 +4,25 @@ using System.Text;
 
 namespace NavBatProject
 {
-    class Ship
+    class eShip
     {
-        public Ship(List<Cell>_cells)
+        public eShip(List<eCell>_cells)
         {
             cells = _cells;
-            foreach (Cell cell in cells)
+            foreach (eCell cell in cells)
             {
                 cell.SetShip(this);
             }
         }
-        protected List<Cell> cells = null;
+        protected List<eCell> cells = null;
         public bool IsAlive()
         {
             bool isAlive = false;
             if (cells.Count != 0)
             {
-                foreach(Cell cell in cells)
+                foreach(eCell cell in cells)
                 {
-                    if (cell._Type==Cell.Type.ALIVE)
+                    if (cell.Type== eCell.eType.ALIVE)
                     {
                         isAlive = true;
                         break;
@@ -41,10 +41,10 @@ namespace NavBatProject
             if (cells.Count == 0) return false;
             bool areVert = true;
             bool areHor = true;
-            Cell firstCell = cells[0];
-            foreach (Cell cell in cells)
+            eCell firstCell = cells[0];
+            foreach (eCell cell in cells)
             {
-                if (cell._Type == Cell.Type.ALIVE || cell._Type == Cell.Type.HITTED)
+                if (cell.Type == eCell.eType.ALIVE || cell.Type == eCell.eType.HITTED)
                 {
                     return false;
                 }
@@ -66,7 +66,7 @@ namespace NavBatProject
             {
                 if (cell.X == x && cell.Y == y)
                 {
-                    if (cell._Type==Cell.Type.HITTED)
+                    if (cell.Type==eCell.eType.HITTED)
                     {
                         break;
                     }
