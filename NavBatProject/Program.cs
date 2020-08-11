@@ -27,13 +27,19 @@ namespace NavBatProject
             eShip ship2 = new eShip(eCells2);
             eShip ship3 = new eShip(eCells3);
             eShip ship4 = new eShip(eCells4);
-            eBoard board = new eBoard();
-            board.AddShip(ship1);
-            board.AddShip(ship2);
-            board.AddShip(ship3);
-            board.AddShip(ship4);
-            board.CheckHit(2, 2);
-            Console.WriteLine(board.ConsolePrint());
+            eBoard board1 = new eBoard();
+            eBoard board2 = new eBoard();
+            eUser user1 = new eUser(board1, board2);
+            eUser user2 = new eUser(board2, board1);
+            board1.AddShip(ship1);
+            board1.AddShip(ship3);
+            board2.AddShip(ship2);
+            board2.AddShip(ship4);
+            board2.CheckHit(2, 2);
+            Console.WriteLine(user1.ConsolePrint());
+            Console.ReadKey();
+            Console.Clear();
+            Console.WriteLine(user2.ConsolePrint());
         }
     }
 }

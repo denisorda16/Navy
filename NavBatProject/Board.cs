@@ -61,6 +61,15 @@ namespace NavBatProject
         }
         protected List<eCell> cells = null;
         protected List<eShip> ships = null;
+        protected eUser owner = null;
+        public void Subscribe(eUser _owner)
+        {
+            owner = _owner;
+        }
+        public void UnSubscribe()
+        {
+            owner = null;
+        }
 
         public List<eCell> Cells() { return cells; }
         public bool AddShip (eShip ship)
@@ -138,8 +147,9 @@ namespace NavBatProject
             return $"boardSize ={cells.Count}, cells[{string.Join(",", cells)}], shipsSize = {ships.Count}, ships[{string.Join(",", ships)}]";
         }
         //to do:kill after working with ui
-        public string ConsolePrint()
+        public string ConsolePrint(eUser user= null)
         {
+            bool isOwner = user == owner;
             string result;
             string horDiv = "----------------------";
             string vertDiv = "|";
@@ -151,17 +161,34 @@ namespace NavBatProject
                 for (int j = 0; j < 10; ++j)
                 {
                     eCell cell = cells[10 * i + j];
-                    switch(cell.Type)
-                    {
-                        case eCell.eType.ALIVE: line += "B" + vertDiv;break;
-                        case eCell.eType.EMPTY: line += "?" + vertDiv;break;
-                        case eCell.eType.HITTED: line += "$" + vertDiv;break;
-                        case eCell.eType.MISSED: line += "#" + vertDiv;break;
-                    }
+                    line += ConsoleCellPrint(isOwner,cell) + vertDiv;
+                   
+                    
                 }
                     result += "\n"+ line + "\n" + horDiv;            
             }
                 return result;
+        }
+        protected string ConsoleCellPrint(bool isOwner, eCell cell)
+        {
+           if (isOwner)
+            {
+                switch (cell.Type)
+                {
+                    case eCell.eType.ALIVE:    return "B";
+                    case eCell.eType.EMPTY:    return "?";
+                    case eCell.eType.HITTED:   return "$";
+                    case eCell.eType.MISSED:   return "#";
+                }
+            }
+                switch (cell.Type)
+                {
+                    case eCell.eType.ALIVE:     
+                    case eCell.eType.EMPTY:     return "u";
+                    case eCell.eType.HITTED:    return "$";
+                    case eCell.eType.MISSED:    return "#";
+                }
+            return "";
         }
 
     }
