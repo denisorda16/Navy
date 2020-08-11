@@ -112,10 +112,10 @@ namespace NavBatProject
 
             switch (shipSize)
             {
-                case 1: return res.Count < 1;
-                case 2: return res.Count < 2;
-                case 3: return res.Count < 3;
-                case 4: return res.Count < 4;
+                case 1: return res.Count < 4;
+                case 2: return res.Count < 3;
+                case 3: return res.Count < 2;
+                case 4: return res.Count < 1;
                 default:
                 return false;
             }
@@ -126,7 +126,9 @@ namespace NavBatProject
             List<eCell> cellsAround = cells.FindAll(delegate (eCell item)
             {
                 return item.Type != eCell.eType.EMPTY
-                    && (Math.Abs(item.X - cell.X) == 1 || Math.Abs(item.Y - cell.Y)==1);
+                    && ((Math.Abs(item.X - cell.X) == 1 && Math.Abs(item.Y - cell.Y) == 0)
+                    || (Math.Abs(item.X - cell.X) == 1 &&Math.Abs(item.Y - cell.Y)==1)
+                   || (Math.Abs(item.X - cell.X) == 0  &&Math.Abs(item.Y - cell.Y) == 1)) ;
             });
 
             return cellsAround.Count == 0;
