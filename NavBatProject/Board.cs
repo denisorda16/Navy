@@ -41,7 +41,9 @@ namespace NavBatProject
                     else
                     {
                         cell.OnHittedCell();
-                        return true;
+                        if (cell.Type == eCell.eType.HITTED)
+                            return true;
+                        return false;
                     }
                 }
             }

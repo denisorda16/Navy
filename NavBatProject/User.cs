@@ -6,11 +6,16 @@ namespace NavBatProject
 {
     class eUser
     {
-        public eUser (eBoard _myBoard, eBoard _hisBoard)
+        public eUser(string _name) { Name = _name; }
+        public void Init (eBoard _myBoard, eBoard _hisBoard)
         {
             myBoard = _myBoard;
             hisBoard = _hisBoard;
             myBoard.Subscribe(this);
+        }
+        public string Name
+        {
+            get;
         }
         public string ConsolePrint()
         {
@@ -20,6 +25,6 @@ namespace NavBatProject
 
         }
         private eBoard myBoard = null;
-        private eBoard hisBoard = null;
+        private eBoard hisBoard = null;    
     }
 }
