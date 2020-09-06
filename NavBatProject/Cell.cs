@@ -38,7 +38,6 @@ namespace NavBatProject
             {
                 case eType.EMPTY: type = eType.MISSED; break;
                 case eType.ALIVE: type = eType.HITTED; break;
-                case eType.HITTED: type = eType.MISSED; break;
             }
         }
         public override string ToString()
