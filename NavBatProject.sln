@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NavBatProject", "NavBatProject\NavBatProject.csproj", "{BA4BF3AA-F7C5-42E7-8C80-AFF020C484FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NavBatUI", "NavBatUA\NavBatUI.csproj", "{BA695801-2D5E-4E95-B1A9-0239C0C10FBB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NavBatUI", "NavBatUI\NavBatUI.csproj", "{6417D6B6-0507-458A-8D57-ADCB32D1E14E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{BA4BF3AA-F7C5-42E7-8C80-AFF020C484FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA4BF3AA-F7C5-42E7-8C80-AFF020C484FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA4BF3AA-F7C5-42E7-8C80-AFF020C484FF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BA695801-2D5E-4E95-B1A9-0239C0C10FBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BA695801-2D5E-4E95-B1A9-0239C0C10FBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BA695801-2D5E-4E95-B1A9-0239C0C10FBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BA695801-2D5E-4E95-B1A9-0239C0C10FBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6417D6B6-0507-458A-8D57-ADCB32D1E14E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6417D6B6-0507-458A-8D57-ADCB32D1E14E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6417D6B6-0507-458A-8D57-ADCB32D1E14E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6417D6B6-0507-458A-8D57-ADCB32D1E14E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
