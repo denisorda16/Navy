@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NavBatProject;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,10 +15,8 @@ namespace NavBatUI
         public Form1()
         {
             InitializeComponent();
+            preparedShip = new eShip(new List<eCell>());
         }
-
-        
-        
         
 
         private void Form1_Load(object sender, EventArgs e)
@@ -32,6 +31,7 @@ namespace NavBatUI
                     pictureBox.Height = HEIGHT;
                     pictureBox.BackColor = Color.White;
                     tableLayoutPanel1.Controls.Add( pictureBox, i, j);
+                    pictureBox.Click += new EventHandler(CellClick);
                 }
                 Label hLabel = new Label();
                 hLabel.Width = WIDTH;
@@ -47,6 +47,56 @@ namespace NavBatUI
                 vLabel.BackColor = Color.Gray;
                 vLabel.Text = i==10?"10":((char)('1' + i - 1)).ToString();
                 tableLayoutPanel1.Controls.Add(vLabel, 0, i);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            isPrepareFirstBoard = true;
+        }
+        bool isPrepareFirstBoard = false;
+        bool isPrepareSecondBoard = false;
+        eShip preparedShip = null;
+
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            isPrepareFirstBoard = false;
+        }
+
+        private void CellClick(object sender, EventArgs e)
+        {
+            TableLayoutPanelCellPosition pos =  tableLayoutPanel1.GetCellPosition((Control)sender);
+            label1.Text = $"col:{pos.Column}, row:{pos.Row}";
+            if(isPrepareFirstBoard || isPrepareSecondBoard)
+            {
+                PictureBox pictureBox = (PictureBox)sender;
+                List<eCell> cells = preparedShip.Cells();
+                eCell newShipCell = new eCell(pos.Column, pos.Row);
+                if(!cells.Contains(newShipCell))
+                {
+                    preparedShip.AddCell(newShipCell);
+                    if(!preparedShip.IsValid())
+                    {
+                        foreach(eCell c in cells)
+                        {
+                            System.Windows.Forms.Control clr = tableLayoutPanel1.GetControlFromPosition(c.X, c.Y);
+                            clr.BackColor = Color.White;
+                        }
+                        cells.RemoveAll((cell)=>
+                        {
+                            if(cell != newShipCell)
+                            {
+                                cell.Reset();
+                                return true;
+                            }
+                            return false;
+                        });
+                    }
+                    preparedShip.Cells(cells);
+                    pictureBox.BackColor = Color.Yellow;
+                }
+
             }
         }
     }
