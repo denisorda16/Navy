@@ -16,6 +16,8 @@ namespace NavBatUI
         {
             InitializeComponent();
             preparedShip = new eShip(new List<eCell>());
+            board1 = new eBoard();
+            board2 = new eBoard();
         }
         
 
@@ -57,11 +59,27 @@ namespace NavBatUI
         bool isPrepareFirstBoard = false;
         bool isPrepareSecondBoard = false;
         eShip preparedShip = null;
+        eBoard board1 = null;
+        eBoard board2 = null;
 
 
         private void button2_Click(object sender, EventArgs e)
         {
-            isPrepareFirstBoard = false;
+            if (isPrepareFirstBoard)
+            {
+                List<eCell> cells = preparedShip.Cells();
+                isPrepareFirstBoard = false;
+                if (board1.AddShip(preparedShip))
+                {
+                    foreach (eCell c in cells)
+                    {
+                        System.Windows.Forms.Control clr = tableLayoutPanel1.GetControlFromPosition(c.X, c.Y);
+                        clr.BackColor = Color.Green;
+                    }
+                       cells.Clear();
+                }
+                
+            }
         }
 
         private void CellClick(object sender, EventArgs e)
@@ -71,6 +89,7 @@ namespace NavBatUI
             if(isPrepareFirstBoard || isPrepareSecondBoard)
             {
                 PictureBox pictureBox = (PictureBox)sender;
+                if (pictureBox.BackColor == Color.Green) return;
                 List<eCell> cells = preparedShip.Cells();
                 eCell newShipCell = new eCell(pos.Column, pos.Row);
                 if(!cells.Contains(newShipCell))
@@ -85,7 +104,7 @@ namespace NavBatUI
                         }
                         cells.RemoveAll((cell)=>
                         {
-                            if(cell != newShipCell)
+                            if(!cell.Equal(newShipCell))
                             {
                                 cell.Reset();
                                 return true;

@@ -16,8 +16,7 @@ namespace NavBatProject
             get;
         }
 
-        public static bool operator==(eCell _left, eCell _right) { return _left.X == _right.X && _left.Y == _right.Y; }
-        public static bool operator!=(eCell _left, eCell _right) { return !(_left == _right); }
+        public bool Equal(eCell _right) { return X == _right.X && Y == _right.Y; }
         public int Y
         {
             get;
