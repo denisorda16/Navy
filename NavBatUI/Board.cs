@@ -87,7 +87,7 @@ namespace NavBatProject
             {
                 eCell copyItem = cells.Find(delegate (eCell item)
                 {
-                    return item.X == cell.X && item.Y == cell.Y;
+                    return cell.Equals(item);
                 });
                 if(copyItem == null)
                 {

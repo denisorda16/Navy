@@ -16,7 +16,12 @@ namespace NavBatProject
             get;
         }
 
-        public bool Equal(eCell _right) { return X == _right.X && Y == _right.Y; }
+        public override bool Equals(Object _right)
+        {
+            if (_right == null) return false;
+            eCell right = (eCell)_right;
+            return X == right.X && Y == right.Y;
+        }
         public int Y
         {
             get;
