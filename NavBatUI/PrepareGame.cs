@@ -17,7 +17,7 @@ namespace NavBatUI
                            Label _info)
         {
             board1 = _board1;
-            board2 = _board1;
+            board2 = _board2;
             panel1 = _panel1;
             panel2 = _panel2;
             info = _info;
@@ -44,7 +44,8 @@ namespace NavBatUI
             if (needPrepare)
             {
                 List<eCell> cells = preparedShip.Cells();
-                if (GetBoard().AddShip(preparedShip))
+                eBoard board = GetBoard();
+                if (board.AddShip(preparedShip))
                 {
                     ResetPreparedPictureBoxes(Color.Green);
                     SwitchPanelsStatus();
@@ -75,7 +76,7 @@ namespace NavBatUI
                 Label vLabel = new Label();
                 vLabel.Width = Form1.WIDTH;
                 vLabel.Height = Form1.HEIGHT;
-                vLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+                vLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
                 vLabel.BackColor = Color.Gray;
                 vLabel.Text = i == 10 ? "10" : ((char)('1' + i - 1)).ToString();
                 _panel.Controls.Add(vLabel, 0, i);
@@ -128,7 +129,7 @@ namespace NavBatUI
                     return;
                 }
                 List<eCell> cells = preparedShip.Cells();
-                eCell newShipCell = new eCell(pos.Column, pos.Row);
+                eCell newShipCell = new eCell(pos.Column-1, pos.Row-1);
                 if (!cells.Contains(newShipCell))
                 {
                     preparedShip.AddCell(newShipCell);
@@ -150,7 +151,7 @@ namespace NavBatUI
             List<eCell> cells = preparedShip.Cells();
             foreach (eCell c in cells)
             {
-                System.Windows.Forms.Control clr = GetPanel().GetControlFromPosition(c.X, c.Y);
+                System.Windows.Forms.Control clr = GetPanel().GetControlFromPosition(c.X+1, c.Y+1);
                 clr.BackColor = _color;
             }
             cells.Clear();

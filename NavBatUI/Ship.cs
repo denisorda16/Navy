@@ -56,6 +56,7 @@ namespace NavBatProject
             if (cells.Count == 0 || cells.Count > 4) return false;
             bool areVert = true;
             bool areHor = true;
+            //todo: bug
             eCell firstCell = cells[0];
             foreach (eCell cell in cells)
             {
