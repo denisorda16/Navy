@@ -31,7 +31,8 @@ namespace NavBatUI
         private eShip preparedShip          = null;
         private eBoard board1               = null;
         private eBoard board2               = null;
-
+        public delegate void PreparedBoardsDelegate();
+        public event PreparedBoardsDelegate OnPreparedBoards;
         public void LoadPanels()
         {
             LoadPanel(panel1);
@@ -52,12 +53,28 @@ namespace NavBatUI
                     SwitchPanelsStatus();
                 }
             }
+            if(!needPrepare)
+            {
+                   OnPreparedPanel(panel1);
+                   OnPreparedPanel(panel2);
+                   OnPreparedBoards?.Invoke();
+            }
         }
         private void CheckPreparedStatus()
         {
             needPrepare = board1.ShipsCount < 10 && board2.ShipsCount < 10;
         }
-
+        private void OnPreparedPanel(TableLayoutPanel _panel)
+        {
+            for (int i = 1; i < 11; ++i)
+            {
+                for (int j = 1; j < 11; ++j)
+                {
+                    PictureBox pictureBox = (PictureBox)_panel.GetControlFromPosition(i, j);
+                    pictureBox.Click -= CellClick;
+                }
+            }
+           }
         private void LoadPanel(TableLayoutPanel _panel)
         {
             for (int i = 1; i < 11; ++i)

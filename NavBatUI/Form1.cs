@@ -29,19 +29,28 @@ namespace NavBatUI
         private void Form1_Load(object sender, EventArgs e)
         {
             preparer.LoadPanels();
+            preparer.OnPreparedBoards += OnGamePrepared;
         }
         
         eBoard board1 = null;
         eBoard board2 = null;
 
 
-        
+        private void OnGamePrepared()
+        {
+            button2.Visible = false;
+
+        }
+
 
         private void button2_Click(object sender, EventArgs e)
         {
             preparer.OnItemPrepared();
         }
 
-        
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
