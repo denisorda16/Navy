@@ -57,9 +57,20 @@ namespace NavBatProject
             bool areVert = true;
             bool areHor = true;
             //todo: bug
+            
             eCell firstCell = cells[0];
+            eCell minCell = cells[0];
+            eCell maxCell = cells[0];
             foreach (eCell cell in cells)
             {
+                if (minCell.X > cell.X || minCell.Y > cell.Y)
+                {
+                    minCell = cell;
+                }
+                if (maxCell.X < cell.X || maxCell.Y < cell.Y)
+                {
+                    maxCell = cell;
+                }
                 if (cell.Type != eCell.eType.ALIVE && cell.Type != eCell.eType.HITTED)
                 {
                     return false;
@@ -74,7 +85,9 @@ namespace NavBatProject
                 }
                 if (!areVert && !areHor) break;
             }
-            return areVert || areHor;
+            
+            return (areVert || areHor)
+                && (cells.Count==maxCell.Y - minCell.Y+1 || cells.Count == maxCell.X - minCell.X + 1);
         }
         public bool CheckHit(int x, int y)
         {
