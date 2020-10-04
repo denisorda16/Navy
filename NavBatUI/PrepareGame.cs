@@ -48,9 +48,14 @@ namespace NavBatUI
                 if (board.AddShip(preparedShip))
                 {
                     ResetPreparedPictureBoxes(Color.Green);
+                    CheckPreparedStatus();
                     SwitchPanelsStatus();
                 }
             }
+        }
+        private void CheckPreparedStatus()
+        {
+            needPrepare = board1.ShipsCount < 10 && board2.ShipsCount < 10;
         }
 
         private void LoadPanel(TableLayoutPanel _panel)

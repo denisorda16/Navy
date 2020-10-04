@@ -98,6 +98,7 @@ namespace NavBatProject
             ships.Add(new eShip(copyShipCells));
             return true;
         }
+        public int ShipsCount { get { return ships.Count; } } 
         protected bool HasSpace(eShip ship)
         {
             foreach (eCell cell in ship.Cells())
