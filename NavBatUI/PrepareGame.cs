@@ -35,8 +35,8 @@ namespace NavBatUI
         public event PreparedBoardsDelegate OnPreparedBoards;
         public void LoadPanels()
         {
-            LoadPanel(panel1);
-            LoadPanel(panel2);
+            LoadPanel(panel1, CellClick);
+            LoadPanel(panel2, CellClick);
         }
 
         public void OnItemPrepared()
@@ -55,8 +55,8 @@ namespace NavBatUI
             }
             if(!needPrepare)
             {
-                   OnPreparedPanel(panel1);
-                   OnPreparedPanel(panel2);
+                   OnPreparedPanel(panel1, CellClick);
+                   OnPreparedPanel(panel2, CellClick);
                    OnPreparedBoards?.Invoke();
             }
         }
@@ -64,18 +64,18 @@ namespace NavBatUI
         {
             needPrepare = board1.ShipsCount < 10 && board2.ShipsCount < 10;
         }
-        private void OnPreparedPanel(TableLayoutPanel _panel)
+        private void OnPreparedPanel(TableLayoutPanel _panel, OnCellClicked _func)
         {
             for (int i = 1; i < 11; ++i)
             {
                 for (int j = 1; j < 11; ++j)
                 {
                     PictureBox pictureBox = (PictureBox)_panel.GetControlFromPosition(i, j);
-                    pictureBox.Click -= CellClick;
+                    pictureBox.Click -= new EventHandler(_func);
                 }
             }
            }
-        private void LoadPanel(TableLayoutPanel _panel)
+        public static void LoadPanel(TableLayoutPanel _panel, OnCellClicked _func)
         {
             for (int i = 1; i < 11; ++i)
             {
@@ -86,7 +86,7 @@ namespace NavBatUI
                     pictureBox.Height = Form1.HEIGHT;
                     pictureBox.BackColor = Color.White;
                     _panel.Controls.Add(pictureBox, i, j);
-                    pictureBox.Click += new EventHandler(CellClick);
+                    pictureBox.Click += new EventHandler(_func);
                 }
                 Label hLabel = new Label();
                 hLabel.Width = Form1.WIDTH;
@@ -124,9 +124,9 @@ namespace NavBatUI
         }
         private void SwitchPanelsStatus()
         {
-            Point p = panel1.Location;
-            panel1.Location     = panel2.Location;
-            panel2.Location     = p;
+            //Point p = panel1.Location;
+            //panel1.Location     = panel2.Location;
+            //panel2.Location     = p;
             bool visible        = panel1.Visible;
             panel1.Visible      = panel2.Visible;
             panel2.Visible      = visible;
@@ -135,9 +135,12 @@ namespace NavBatUI
                 isPrepareFirstBoard = !isPrepareFirstBoard;
             }
         }
-
+        public delegate void OnCellClicked(object sender, EventArgs e);
         private void CellClick(object sender, EventArgs e)
         {
+            if(!needPrepare) {
+                return;
+            }
             Control c = (Control)sender;
             if (!GetPanel().Contains(c)) return;
             TableLayoutPanelCellPosition pos = GetPanel().GetCellPosition(c);

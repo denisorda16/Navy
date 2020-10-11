@@ -39,8 +39,16 @@ namespace NavBatUI
         private void OnGamePrepared()
         {
             button2.Visible = false;
-
+            preparer.OnPreparedBoards -= OnGamePrepared;
+            PrepareGame.LoadPanel(tableLayoutPanel3, CellClick);
+            PrepareGame.LoadPanel(tableLayoutPanel4, CellClick);
+            tableLayoutPanel3.Visible = true; 
         }
+
+        private void CellClick(object sender, EventArgs e)
+        {
+        }
+
 
 
         private void button2_Click(object sender, EventArgs e)
