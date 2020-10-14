@@ -15,7 +15,8 @@ namespace NavBatUI
         public Form1()
         {
             InitializeComponent();
-
+            user1 = new eUser("Ivan");
+            user2 = new eUser("Denis");
             board1 = new eBoard();
             board2 = new eBoard();
             preparer = new PrepareGame(board1,
@@ -26,6 +27,9 @@ namespace NavBatUI
         }
 
         PrepareGame preparer = null;
+        Game       game      = null;
+        eUser      user1     = null;
+        eUser      user2     = null;
         private void Form1_Load(object sender, EventArgs e)
         {
             preparer.LoadPanels();
@@ -40,13 +44,13 @@ namespace NavBatUI
         {
             button2.Visible = false;
             preparer.OnPreparedBoards -= OnGamePrepared;
-            PrepareGame.LoadPanel(tableLayoutPanel3, CellClick);
-            PrepareGame.LoadPanel(tableLayoutPanel4, CellClick);
-            tableLayoutPanel3.Visible = true; 
-        }
+            
+            tableLayoutPanel3.Visible = true;
+            preparer = null;
 
-        private void CellClick(object sender, EventArgs e)
-        {
+            game = new Game(user1, user2);
+            game.Init(board1, board2, tableLayoutPanel1, tableLayoutPanel2, tableLayoutPanel3, tableLayoutPanel4);
+            game.Start();
         }
 
 
