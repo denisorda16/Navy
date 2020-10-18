@@ -23,8 +23,8 @@ namespace NavBatProject
         {
             userBoard1 = _userBoard1;
             userBoard2 = _userBoard2;
-            PrepareGame.LoadPanel(_userPanelThree, CellClick);
-            PrepareGame.LoadPanel(_userPanelFour, CellClick);
+            UITools.LoadPanel(_userPanelThree, CellClick);
+            UITools.LoadPanel(_userPanelFour, CellClick);
             user1.Init(userBoard1, userBoard2, _userPanelOne, _userPanelThree);
             user2.Init(userBoard2, userBoard1, _userPanelTwo, _userPanelFour);
         }

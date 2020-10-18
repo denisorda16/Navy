@@ -44,9 +44,6 @@ namespace NavBatUI
         {
             button2.Visible = false;
             preparer.OnPreparedBoards -= OnGamePrepared;
-            UITools.LoadPanel(tableLayoutPanel3, CellClick);
-            UITools.LoadPanel(tableLayoutPanel4, CellClick);
-            tableLayoutPanel3.Visible = true; 
             preparer = null;
 
             game = new Game(user1, user2);
