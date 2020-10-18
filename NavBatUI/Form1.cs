@@ -40,8 +40,8 @@ namespace NavBatUI
         {
             button2.Visible = false;
             preparer.OnPreparedBoards -= OnGamePrepared;
-            PrepareGame.LoadPanel(tableLayoutPanel3, CellClick);
-            PrepareGame.LoadPanel(tableLayoutPanel4, CellClick);
+            UITools.LoadPanel(tableLayoutPanel3, CellClick);
+            UITools.LoadPanel(tableLayoutPanel4, CellClick);
             tableLayoutPanel3.Visible = true; 
         }
 
