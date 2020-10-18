@@ -32,6 +32,10 @@ namespace NavBatProject
             return result;
 
         }
+
+        public TableLayoutPanel MyPanel() { return myPanel; }
+        public TableLayoutPanel EnemyPanel() { return hisPanel; }
+
         private eBoard myBoard = null;
         private eBoard hisBoard = null;
         private TableLayoutPanel myPanel = null;

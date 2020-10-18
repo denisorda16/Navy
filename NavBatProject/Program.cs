@@ -3,6 +3,15 @@ using System.Collections.Generic;
 
 namespace NavBatProject
 {
+    class A
+    {
+      public  int I { set; get; }
+    }
+
+    struct B
+    {
+        public int I { set; get; }
+    }
     class Program
     {
         static void Main(string[] args)
