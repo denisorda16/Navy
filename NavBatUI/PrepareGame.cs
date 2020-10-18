@@ -59,10 +59,10 @@ namespace NavBatUI
         {
             simulatePoints = new Queue<SimulatePoint>();
             //1 palubn
-            simulatePoints.Enqueue(new SimulatePoint( 1, 1, true));
-            simulatePoints.Enqueue(new SimulatePoint( 3, 1, true));
-            simulatePoints.Enqueue(new SimulatePoint( 5, 1, true));
-            simulatePoints.Enqueue(new SimulatePoint( 7, 1, true));
+            simulatePoints.Enqueue(new SimulatePoint( 1, 1, true)); //1
+            simulatePoints.Enqueue(new SimulatePoint( 3, 1, true)); //2
+            simulatePoints.Enqueue(new SimulatePoint( 5, 1, true)); //1
+            simulatePoints.Enqueue(new SimulatePoint( 7, 1, true)); //2
             simulatePoints.Enqueue(new SimulatePoint(10, 3, true));
             simulatePoints.Enqueue(new SimulatePoint(10, 5, true));
             simulatePoints.Enqueue(new SimulatePoint(10, 7, true));
