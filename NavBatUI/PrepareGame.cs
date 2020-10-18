@@ -4,7 +4,21 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
+
+struct SimulatePoint
+{
+    public SimulatePoint(int _x, int _y, bool _itemPrepared)
+    {
+        X = _x;
+        Y = _y;
+        ItemPreparedFinish = _itemPrepared;
+    }
+    public int X { set; get; } 
+    public int Y { set; get; } 
+    public bool ItemPreparedFinish { set; get; } 
+}
 
 namespace NavBatUI
 {
@@ -37,6 +51,47 @@ namespace NavBatUI
         {
             UITools.LoadPanel(panel1, CellClick);
             UITools.LoadPanel(panel2, CellClick);
+        }
+
+        Queue<SimulatePoint> simulatePoints = null;
+        int simulateId = 0;
+        public void SimulateInit()
+        {
+            simulatePoints = new Queue<SimulatePoint>();
+            //1 palubn
+            simulatePoints.Enqueue(new SimulatePoint( 1, 1, true));
+            simulatePoints.Enqueue(new SimulatePoint( 3, 1, true));
+            simulatePoints.Enqueue(new SimulatePoint( 5, 1, true));
+            simulatePoints.Enqueue(new SimulatePoint( 7, 1, true));
+            simulatePoints.Enqueue(new SimulatePoint(10, 3, true));
+            simulatePoints.Enqueue(new SimulatePoint(10, 5, true));
+            simulatePoints.Enqueue(new SimulatePoint(10, 7, true));
+            simulatePoints.Enqueue(new SimulatePoint(10, 9, true));
+            //2 palubn
+            simulatePoints.Enqueue(new SimulatePoint(1, 3, false));
+            simulatePoints.Enqueue(new SimulatePoint(1, 4, true));
+            simulatePoints.Enqueue(new SimulatePoint(4, 1, false));
+            simulatePoints.Enqueue(new SimulatePoint(3, 1, true));
+
+        }
+
+        public bool SimulateNext()
+        {
+            if (simulatePoints.Count != 0)
+            {
+                Simulate_(simulatePoints.Dequeue());
+                return true;
+            }
+            return false;
+        }
+        private void Simulate_(SimulatePoint sp)
+        {
+            Control c = GetPanel().GetControlFromPosition(sp.X, sp.Y);
+            CellClick(c, EventArgs.Empty);
+            if (sp.ItemPreparedFinish)
+            {
+                OnItemPrepared();
+            }
         }
 
         public void OnItemPrepared()

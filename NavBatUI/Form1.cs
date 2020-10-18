@@ -43,7 +43,9 @@ namespace NavBatUI
         private void OnGamePrepared()
         {
             button2.Visible = false;
+            button3.Visible = false;
             preparer.OnPreparedBoards -= OnGamePrepared;
+          
             preparer = null;
 
             game = new Game(user1, user2);
@@ -61,6 +63,22 @@ namespace NavBatUI
         private void button1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            button2.Enabled = false;
+            button3.Enabled = false;
+            timer1.Enabled = true;
+            preparer.SimulateInit();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if(!preparer.SimulateNext())
+            {
+                timer1.Enabled = false;
+            }
         }
     }
 }
