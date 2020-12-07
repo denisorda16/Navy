@@ -75,7 +75,7 @@ namespace NavBatUI
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if(!preparer.SimulateNext())
+            if(preparer != null && !preparer.SimulateNext())
             {
                 timer1.Enabled = false;
             }

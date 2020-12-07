@@ -63,16 +63,48 @@ namespace NavBatUI
             simulatePoints.Enqueue(new SimulatePoint( 3, 1, true)); //2
             simulatePoints.Enqueue(new SimulatePoint( 5, 1, true)); //1
             simulatePoints.Enqueue(new SimulatePoint( 7, 1, true)); //2
-            simulatePoints.Enqueue(new SimulatePoint(10, 3, true));
-            simulatePoints.Enqueue(new SimulatePoint(10, 5, true));
-            simulatePoints.Enqueue(new SimulatePoint(10, 7, true));
-            simulatePoints.Enqueue(new SimulatePoint(10, 9, true));
+            simulatePoints.Enqueue(new SimulatePoint(10, 3, true)); //1
+            simulatePoints.Enqueue(new SimulatePoint(10, 5, true)); //2
+            simulatePoints.Enqueue(new SimulatePoint(10, 7, true)); //1
+            simulatePoints.Enqueue(new SimulatePoint(10, 9, true)); //2
             //2 palubn
             simulatePoints.Enqueue(new SimulatePoint(1, 3, false));
-            simulatePoints.Enqueue(new SimulatePoint(1, 4, true));
-            simulatePoints.Enqueue(new SimulatePoint(4, 1, false));
-            simulatePoints.Enqueue(new SimulatePoint(3, 1, true));
+            simulatePoints.Enqueue(new SimulatePoint(2, 3, true));  //1
+            simulatePoints.Enqueue(new SimulatePoint(5, 1, false)); //2
+            simulatePoints.Enqueue(new SimulatePoint(5, 2, true));
+            simulatePoints.Enqueue(new SimulatePoint(9, 1, false)); 
+            simulatePoints.Enqueue(new SimulatePoint(10, 1, true)); //1
+            simulatePoints.Enqueue(new SimulatePoint(9, 1, false)); //2
+            simulatePoints.Enqueue(new SimulatePoint(9, 2, true));
+            simulatePoints.Enqueue(new SimulatePoint(10, 10, false));
+            simulatePoints.Enqueue(new SimulatePoint(9, 10, true)); //1
+            simulatePoints.Enqueue(new SimulatePoint(7, 4, false)); //2
+            simulatePoints.Enqueue(new SimulatePoint(8, 4, true));
 
+            //3 palubn
+            simulatePoints.Enqueue(new SimulatePoint(1, 10, false)); //1
+            simulatePoints.Enqueue(new SimulatePoint(2, 10, false));
+            simulatePoints.Enqueue(new SimulatePoint(3, 10, true)); 
+            simulatePoints.Enqueue(new SimulatePoint(1, 2, false)); //2
+            simulatePoints.Enqueue(new SimulatePoint(1, 3, false));
+            simulatePoints.Enqueue(new SimulatePoint(1, 4, true));
+            //
+            simulatePoints.Enqueue(new SimulatePoint(6, 8, false)); //1
+            simulatePoints.Enqueue(new SimulatePoint(6, 9, false));
+            simulatePoints.Enqueue(new SimulatePoint(6, 10, true));
+            simulatePoints.Enqueue(new SimulatePoint(6, 8, false)); //2
+            simulatePoints.Enqueue(new SimulatePoint(6, 9, false));
+            simulatePoints.Enqueue(new SimulatePoint(6, 10, true));
+            
+            //4 palubn
+            simulatePoints.Enqueue(new SimulatePoint(1, 5, false)); //1
+            simulatePoints.Enqueue(new SimulatePoint(2, 5, false));
+            simulatePoints.Enqueue(new SimulatePoint(3, 5, false));
+            simulatePoints.Enqueue(new SimulatePoint(4, 5, true));
+            simulatePoints.Enqueue(new SimulatePoint(1, 7, false)); //2
+            simulatePoints.Enqueue(new SimulatePoint(2, 7, false));
+            simulatePoints.Enqueue(new SimulatePoint(3, 7, false));
+            simulatePoints.Enqueue(new SimulatePoint(4, 7, true));
         }
 
         public bool SimulateNext()
