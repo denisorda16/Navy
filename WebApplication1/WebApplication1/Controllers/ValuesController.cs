@@ -14,9 +14,9 @@ namespace WebApplication1.Controllers
     {
         // GET: api/<ValuesController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public string Get()
         {
-            return new string[] { "value1", "value2" };
+            return "Hello World" ;
         }
 
         // GET api/<ValuesController>/5
