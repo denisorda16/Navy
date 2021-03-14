@@ -68,5 +68,58 @@ namespace WindowsFormsApp1
             // responseString = await response.Content.ReadAsStringAsync();
         }
         private static readonly HttpClient client = new HttpClient();
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                panel1.Visible = true;
+            }
+            else
+            {
+                panel1.Visible = false;
+            }
+        }
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox2.Checked)
+            {
+                panel2.Visible = true;
+            }
+            else
+            {
+                panel2.Visible = false;
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var values = new Dictionary<string, string>
+            {
+                { "to", textBox3.Text },
+                { "msg_text", richTextBox2.Text }
+            };
+
+            var test = JsonConvert.SerializeObject(values);
+            var content = new StringContent(test, Encoding.UTF8, "application/json");
+
+            var response = client.PostAsync("https://localhost:44340/api/sms", content);
+
+        }
     }
 }

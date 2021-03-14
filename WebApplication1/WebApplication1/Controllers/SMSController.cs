@@ -38,7 +38,7 @@ namespace WebApplication1.Controllers
             SmsSendAck result = new SmsSendAck();
             result.request = request;
             var accountSid = "AC0a4933cd7f64745cf40c99b6282009d1";
-            var authToken = "dea929407b77c0196a46a05b380f4ab6";
+            var authToken = "55a472015051fabf55e50d5ef2fedbe0";
             TwilioClient.Init(accountSid, authToken);
 
             var messageOptions = new CreateMessageOptions(
