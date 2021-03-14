@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
@@ -48,6 +50,24 @@ namespace WebApplication1.Controllers
             EmailSpammerAck emailSpammerAck = new EmailSpammerAck();
             emailSpammerAck.request = value;
             emailSpammerAck.result = "OK";
+            // отправитель - устанавливаем адрес и отображаемое в письме имя
+            MailAddress from = new MailAddress("andreyondatr@gmail.com", "Tom");
+            // кому отправляем
+            MailAddress to = new MailAddress(value.to);
+            // создаем объект сообщения
+            MailMessage m = new MailMessage(from, to);
+            // тема письма
+            m.Subject = value.subject;
+            // текст письма
+            m.Body = value.msg_text;
+            // письмо представляет код html
+            m.IsBodyHtml = false;
+            // адрес smtp-сервера и порт, с которого будем отправлять письмо
+            SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+            // логин и пароль
+            smtp.Credentials = new NetworkCredential("andreyondatr@gmail.com", "ztmybwadsatqecma");
+            smtp.EnableSsl = true;
+            smtp.Send(m);
             return emailSpammerAck;
         }
     }
